@@ -1,13 +1,38 @@
 
 defmodule Lamblichus.Functor do
-  @doc """
-    Functor operator haskell
+  @moduledoc """
+    `Lamblichus` is a elixir macro for implemented functor way like in haskell
 
-    * The law of identity
-      `∀x. (id <$> x) ≅ x`
+    Functors: uniform action over a parameterized type, generalizing the map function on lists.
 
-    * The law of composition
-      `∀f g x.(f . g <$> x) ≅ (f <$> (g <$> x))`
+    ## Usage
+    You can define an Lamblichus Functor by calling `use Lamblichus.Functor` with a few
+    options in your module.
+
+    ```
+    defmodule Stage.Init do
+      # If you don't want to import a function or macro from `Kernel`,
+      # use the `:except` option and then list the function/macro by arity:
+      import Kernel, except: [<~>: 2, <|>: 2]
+
+      use Lamblichus.Functor
+    end
+    ```
+
+    You can now call the functor macro:
+    ```
+      functor (fn n -> n * 2 end), [1, 2, 3]
+      (fn n -> n * 2 end) <~> [1, 2, 3]
+
+      (functor (fn n -> n + 1 end), (fn n -> n * 2 end)).(8)
+      ((fn n -> n + 1 end) <~> (fn n -> n * 2 end)).(8)
+
+      functor_flipped [1, 2, 3], (fn n -> n + 1 end)
+      [1, 2, 3] <|> fn n -> n + 1 end
+
+      (functor_flipped (fn n -> n + 1 end), (fn n -> n * 2 end)).(8)
+      ((fn n -> n + 1 end) <|> (fn n -> n * 2 end)).(8)
+    ```
   """
 
   # Type Definitions
@@ -18,12 +43,27 @@ defmodule Lamblichus.Functor do
   @typedoc "(a -> b) -> f a -> f b"
   @type f :: (term -> term)
 
+  # Use Macro
+  # ---------
   defmacro __using__(__opts__) do
     quote do
       import unquote(__MODULE__)
     end
   end
 
+  @doc """
+    A `Functor` is a type constructor which supports a mapping operation `map`
+
+    `map` can be used to turn functions `a -> b` into functions
+    `f a -> f b` whose argument and return types use the type constructor `f`
+    to represent some computational context.
+
+    * The law of identity
+      `∀x. (id <$> x) ≅ x`
+
+    * The law of composition
+      `∀f g x.(f . g <$> x) ≅ (f <$> (g <$> x))`
+  """
   @spec functor(t, f) :: t
   defmacro functor(func, val) do
     quote do
