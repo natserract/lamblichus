@@ -1,13 +1,20 @@
-defmodule Lamblichus do
-  use Operator
+defmodule Lamblichus.Test do
+  use Lamblichus.Functor
 
   def main do
+    flipped = functor_flipped([1, 2, 3], fn n -> n + 1 end)
+    IO.inspect(flipped)
+  end
+end
 
+defmodule Lamblichus do
+  def main do
+    Lamblichus.Test.main()
   end
 end
 
 # Elix.loop(["asd", 2])
-Elix.main()
+Lamblichus.main()
 
 # ms =
 #   start("lowercase")

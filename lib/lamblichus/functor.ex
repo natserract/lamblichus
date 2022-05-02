@@ -1,11 +1,17 @@
-defmodule Operator do
+defmodule Lamblichus.Functor do
   @doc """
     Functor operator haskell
+
+    * The law of identity
+      `∀x. (id <$> x) ≅ x`
+
+    * The law of composition
+      `∀f g x.(f . g <$> x) ≅ (f <$> (g <$> x))`
   """
 
   # Type Definitions
   # ----------------
-  @typedoc "Any type for functor"
+  @typedoc "assume this type as your expected -,-"
   @type t :: any
 
   @typedoc "(a -> b) -> f a -> f b"
@@ -36,4 +42,22 @@ defmodule Operator do
       end
     end
   end
+
+  @doc """
+    Flipped version of `functor`.
+  """
+  @spec functor_flipped(f, t) :: t
+  defmacro functor_flipped(val, func) do
+    quote do
+      case {unquote(val), unquote(func)} do
+        {map, ff} when is_list(map) ->
+          arrayMap(map, ff)
+
+        {_, _} ->
+          IO.warn("todo: functor_flipped#(this op) not yet implemented")
+      end
+    end
+  end
+
+  # defdelegate map, to: Enum, as: arrayMap
 end

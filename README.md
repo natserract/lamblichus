@@ -31,3 +31,9 @@ Haskell ways:
 ~ ((\a -> a + 1) <$> (\b -> b * 2)) 8
 -- Output: 17
 ```
+
+## References:
+- [https://shane.logsdon.io/writing/functors-applicatives-and-monads-in-elixir/](https://shane.logsdon.io/writing/functors-applicatives-and-monads-in-elixir/)
+- [https://hexdocs.pm/elixir/Module.html#module-compile-callbacks](https://hexdocs.pm/elixir/Module.html#module-compile-callbacks)
+- [https://coder-question.com/cq-blog/318128](https://coder-question.com/cq-blog/318128)
+- [https://brooklinmyers.medium.com/using-use-usefully-in-elixir-and-phoenix-b59a5ea08ad2](https://brooklinmyers.medium.com/using-use-usefully-in-elixir-and-phoenix-b59a5ea08ad2)
