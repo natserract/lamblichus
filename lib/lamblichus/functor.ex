@@ -49,15 +49,9 @@ defmodule Lamblichus.Functor do
   @spec functor_flipped(f, t) :: t
   defmacro functor_flipped(val, func) do
     quote do
-      case {unquote(val), unquote(func)} do
-        {map, ff} when is_list(map) ->
-          arrayMap(map, ff)
-
-        {_, _} ->
-          IO.warn("todo: functor_flipped#(this op) not yet implemented")
-      end
+      {map, ff} = {unquote(val), unquote(func)}
+      functor ff, map
     end
   end
 
-  # defdelegate map, to: Enum, as: arrayMap
 end
