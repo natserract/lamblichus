@@ -5,31 +5,9 @@ defmodule Lamblichus do
 
   use Lamblichus.Functor
 
-  def main do
-    functorList = functor (fn n -> n * 2 end), [1, 2, 3]
-    functorListOp = (fn n -> n * 2 end) <~> [1, 2, 3]
+  @spec fmap(any, any) :: :ok | (any -> any) | list
+  defdelegate fmap(t, f), to: Lamblichus.Functor, as: :functor
 
-    functorFn = (functor (fn n -> n + 1 end), (fn n -> n * 2 end)).(8)
-    functorFnOp = ((fn n -> n + 1 end) <~> (fn n -> n * 2 end)).(8)
-
-    flippedList = functor_flipped [1, 2, 3], (fn n -> n + 1 end)
-    flippedListOp = [1, 2, 3] <|> fn n -> n + 1 end
-
-    flippedFn = (functor_flipped (fn n -> n + 1 end), (fn n -> n * 2 end)).(8)
-    flippedFnOp = ((fn n -> n + 1 end) <|> (fn n -> n * 2 end)).(8)
-
-    IO.inspect(functorList)
-    IO.inspect(functorListOp)
-
-    IO.inspect(functorFn)
-    IO.inspect(functorFnOp)
-
-    IO.inspect(flippedList)
-    IO.inspect(flippedListOp)
-
-    IO.inspect(flippedFn)
-    IO.inspect(flippedFnOp)
-  end
+  @spec flip(any, any) :: :ok | (any -> any) | list
+  defdelegate flip(f, t), to: Lamblichus.Functor, as: :functor_flipped
 end
-
-Lamblichus.main()

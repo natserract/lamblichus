@@ -1,7 +1,7 @@
 
 defmodule Lamblichus.Functor do
   @moduledoc """
-    `Lamblichus` is a elixir macro for implemented functor way like in haskell
+    `Lamblichus` is a elixir macro for implemented functor, like in haskell
 
     Functors: uniform action over a parameterized type, generalizing the map function on lists.
 
@@ -23,6 +23,14 @@ defmodule Lamblichus.Functor do
     ```
       (fn n -> n * 2 end) <~> [1, 2, 3]
     ```
+
+    ## Concerns
+    Well, elixir it's nice a language, we can using infix ops too
+    But, we can't define our own operators like in haskell
+
+    We would either have to modify the Elixir parser directly (and recompile Elixir)
+    -> For more details @see https://github.com/elixir-lang/elixir/blob/1907914cf0d9d25b32373d3c8ad6b4b59877baaf/lib/elixir/src/elixir_parser.yrl#L73
+
 
     Happy hacking!
   """
@@ -87,14 +95,6 @@ defmodule Lamblichus.Functor do
     end
   end
 
-  # Well, elixir it's nice a language, we can using infix ops too
-  # But, we can't define our own operators like in haskell
-  #
-  # We would either have to modify the Elixir parser directly (and recompile Elixir)
-  # For more details @see https://github.com/elixir-lang/elixir/blob/1907914cf0d9d25b32373d3c8ad6b4b59877baaf/lib/elixir/src/elixir_parser.yrl#L73
-  #
-  # If you want to use this op from this module use the `:except` option
-  #
   @doc """
     functor as <~>
   """

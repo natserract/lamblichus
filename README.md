@@ -1,6 +1,6 @@
 # Lamblichus
 
-Lamblichus is a **elixir [macro](https://elixir-lang.org/getting-started/meta/macros.html)** for implemented functor way like in haskell
+Lamblichus is a **elixir [macro](https://elixir-lang.org/getting-started/meta/macros.html)** for implemented functor, like in haskell
 
 ## Installation
 
@@ -49,6 +49,9 @@ Haskell ways:
 
 ~ (functor_flipped (fn n -> n + 1 end), (fn n -> n * 2 end)).(8) # Output: [18]
 ~ ((fn n -> n + 1 end) <|> (fn n -> n * 2 end)).(8) # Output: [18]
+
+~ fmap (fn n -> n * 2 end), [1, 2, 3] # Output: [2, 4, 6]
+~ flip ((fn n -> n + 1 end), (fn n -> n * 2 end)).(8) # Output: 18
 ```
 
 ## References:
