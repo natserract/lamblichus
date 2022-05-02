@@ -1,23 +1,23 @@
-# Elix
+# Lamblichus
 
-**TODO: Add description**
+Lamblichus is a **elixir [macro](https://elixir-lang.org/getting-started/meta/macros.html)** for implemented functor way like in haskell
 
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `elix` to your list of dependencies in `mix.exs`:
+by adding `lamblichus` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:elix, "~> 0.1.0"}
+    {:lamblichus, "~> 0.1.0"}
   ]
 end
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/elix>.
+be found at <https://hexdocs.pm/lamblichus>.
 
 
 Haskell ways:
@@ -35,20 +35,20 @@ Haskell ways:
 -- Output: 18
 ```
 
-## Usage/Example: 
+## Example: 
 
 ```ex
-functorList = functor (fn n -> n * 2 end), [1, 2, 3]
-functorListOp = (fn n -> n * 2 end) <~> [1, 2, 3]
+~ functor (fn n -> n * 2 end), [1, 2, 3] # Output: [2, 4, 6]
+~ (fn n -> n * 2 end) <~> [1, 2, 3] # Output: [2, 4, 6]
 
-functorFn = (functor (fn n -> n + 1 end), (fn n -> n * 2 end)).(8)
-functorFnOp = ((fn n -> n + 1 end) <~> (fn n -> n * 2 end)).(8)
+~ (functor (fn n -> n + 1 end), (fn n -> n * 2 end)).(8) # Output: [17]
+~ ((fn n -> n + 1 end) <~> (fn n -> n * 2 end)).(8) # Output: [17]
 
-flippedList = functor_flipped [1, 2, 3], (fn n -> n + 1 end)
-flippedListOp = [1, 2, 3] <|> fn n -> n + 1 end
+~ functor_flipped [1, 2, 3], (fn n -> n + 1 end) # Output: [2, 3, 4]
+~ [1, 2, 3] <|> fn n -> n + 1 end # Output: [2, 3, 4]
 
-flippedFn = (functor_flipped (fn n -> n + 1 end), (fn n -> n * 2 end)).(8)
-flippedFnOp = ((fn n -> n + 1 end) <|> (fn n -> n * 2 end)).(8)
+~ (functor_flipped (fn n -> n + 1 end), (fn n -> n * 2 end)).(8) # Output: [18]
+~ ((fn n -> n + 1 end) <|> (fn n -> n * 2 end)).(8) # Output: [18]
 ```
 
 ## References:
