@@ -30,6 +30,9 @@ Haskell ways:
 
 ~ ((\a -> a + 1) <$> (\b -> b * 2)) 8
 -- Output: 17
+
+~ ((\a -> a + 1) <&> (\b -> b * 2)) 8
+-- Output: 18
 ```
 
 ## References:
@@ -37,3 +40,4 @@ Haskell ways:
 - [https://hexdocs.pm/elixir/Module.html#module-compile-callbacks](https://hexdocs.pm/elixir/Module.html#module-compile-callbacks)
 - [https://coder-question.com/cq-blog/318128](https://coder-question.com/cq-blog/318128)
 - [https://brooklinmyers.medium.com/using-use-usefully-in-elixir-and-phoenix-b59a5ea08ad2](https://brooklinmyers.medium.com/using-use-usefully-in-elixir-and-phoenix-b59a5ea08ad2)
+- [https://github.com/elixir-lang/elixir/blob/main/lib/elixir/src/elixir_parser.yrl](https://github.com/elixir-lang/elixir/blob/main/lib/elixir/src/elixir_parser.yrl)
