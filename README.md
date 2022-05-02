@@ -35,6 +35,22 @@ Haskell ways:
 -- Output: 18
 ```
 
+## Usage/Example: 
+
+```ex
+functorList = functor (fn n -> n * 2 end), [1, 2, 3]
+functorListOp = (fn n -> n * 2 end) <~> [1, 2, 3]
+
+functorFn = (functor (fn n -> n + 1 end), (fn n -> n * 2 end)).(8)
+functorFnOp = ((fn n -> n + 1 end) <~> (fn n -> n * 2 end)).(8)
+
+flippedList = functor_flipped [1, 2, 3], (fn n -> n + 1 end)
+flippedListOp = [1, 2, 3] <|> fn n -> n + 1 end
+
+flippedFn = (functor_flipped (fn n -> n + 1 end), (fn n -> n * 2 end)).(8)
+flippedFnOp = ((fn n -> n + 1 end) <|> (fn n -> n * 2 end)).(8)
+```
+
 ## References:
 - [https://shane.logsdon.io/writing/functors-applicatives-and-monads-in-elixir/](https://shane.logsdon.io/writing/functors-applicatives-and-monads-in-elixir/)
 - [https://hexdocs.pm/elixir/Module.html#module-compile-callbacks](https://hexdocs.pm/elixir/Module.html#module-compile-callbacks)

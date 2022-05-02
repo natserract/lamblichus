@@ -21,18 +21,10 @@ defmodule Lamblichus.Functor do
 
     You can now call the functor macro:
     ```
-      functor (fn n -> n * 2 end), [1, 2, 3]
       (fn n -> n * 2 end) <~> [1, 2, 3]
-
-      (functor (fn n -> n + 1 end), (fn n -> n * 2 end)).(8)
-      ((fn n -> n + 1 end) <~> (fn n -> n * 2 end)).(8)
-
-      functor_flipped [1, 2, 3], (fn n -> n + 1 end)
-      [1, 2, 3] <|> fn n -> n + 1 end
-
-      (functor_flipped (fn n -> n + 1 end), (fn n -> n * 2 end)).(8)
-      ((fn n -> n + 1 end) <|> (fn n -> n * 2 end)).(8)
     ```
+
+    Happy hacking!
   """
 
   # Type Definitions
